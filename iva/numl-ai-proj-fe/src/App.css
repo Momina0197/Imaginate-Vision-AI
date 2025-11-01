@@ -1,0 +1,248 @@
+
+.auth-container {
+  /* background-image:url('G:\my-image-editor-app -all complete (database left)\project\image-editor-frontend\public\bg.png'); 
+  background-image: url('/bg.png'); */
+  background-image: url('./assets/bg.png');  /* adjust if App.css is deeper */
+
+
+
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 1rem;
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.auth-button-group {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.auth-button {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  background-color: white;
+  color: #2F27CE;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #b2a6ed;
+}
+
+/* ===== SignIn Page Layout ===== */
+/* Full screen container split into left and right */
+/* Layout split */
+.signin-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Left side with image */
+.signin-left {
+  flex: 1;
+  background-image: url('./assets/bg.png');  /* adjust if App.css is deeper */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Right side with white background */
+.signin-right {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+/* Center wrapper for form */
+.signin-form-wrapper {
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 1.5rem 2rem;
+  margin: auto;
+}
+
+/* Actual form container */
+.signin-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Text elements */
+.signin-welcome {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+}
+
+.signin-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3d3dd9;
+  margin: 0;
+}
+
+.signin-label {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+/* Inputs */
+.signin-input {
+  padding: 0.6rem 0.9rem;
+  padding-right: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  width: 100%;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Password input with eye */
+.signin-password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.signin-eye {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* Forgot password link */
+.signin-links {
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+.signin-forgot {
+  font-size: 0.85rem;
+  color: #6a6aff;
+  text-decoration: none;
+}
+
+/* Sign in button */
+.signin-button {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #3d3dd9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.signin-divider {
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Social icons */
+.signin-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.signin-icon {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer */
+.signin-footer {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.signin-footer a {
+  margin-left: 5px;
+  color: #6a6aff;
+  text-decoration: none;
+}
+
+/* Signup  */
+.signUp-right {
+  flex: 1;
+  background-image: url('./assets/bg.png');  /* adjust if App.css is deeper */  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Right side with white background */
+.signUp-left {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.auth-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.auth-tab {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.auth-tab.active {
+  color: #3d3dd9;
+  border-bottom: 2px solid #3d3dd9;
+}
