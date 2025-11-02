@@ -4,8 +4,10 @@ import ImageOutput from "./ImageOutput";
 import LoadingError from "./LoadingError";
 import { FaUserCircle } from 'react-icons/fa';
 import axios from 'axios';
-const apiUrl = import.meta.env.VITE_API_URL;
 import './ImageGenerator.css';
+
+const apiUrl = process.env.REACT_APP_API_URL;
+
 
 const ImageGenerator = () => {
   const [prompt, setPrompt] = useState("");
