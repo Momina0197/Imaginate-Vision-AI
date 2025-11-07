@@ -32,14 +32,14 @@ const ImageGenerator = () => {
     formData.append('prompt', imageData.prompt);
 
     try {
+      console.log("Sending request to:", `${apiUrl}/edit-image/`);
       const response = await axios.post(`${apiUrl}/edit-image/`,
         formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        timeout: 30000,
       });
-      console.log("API URL:", apiUrl);
-      console.log("API:", process.env.REACT_APP_API_URL);
 
       if (response.data.image_url) {
         setGeneratedImage(response.data.image_url);
@@ -47,8 +47,18 @@ const ImageGenerator = () => {
         setError('Image not returned. Check backend.');
       }
     } catch (err) {
-      setError(err.response?.data?.error || 'Something went wrong.');
-    } finally {
+      console.error('API Error:', err);
+    
+    if (err.code === 'NETWORK_ERROR' || err.message.includes('Network Error')) {
+      setError('Cannot connect to server. Please check your internet connection and try again.');
+    } else if (err.response?.status === 502) {
+      setError('Server is temporarily unavailable. Please try again later.');
+    } else if (err.response?.data?.error) {
+      setError(err.response.data.error);
+    } else {
+      setError('Failed to generate image. Please try again.');
+    }
+  } finally {
       setLoading(false);
     }
   };
