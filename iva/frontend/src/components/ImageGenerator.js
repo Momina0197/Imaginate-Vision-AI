@@ -31,7 +31,7 @@ const handleGenerateImage = async (imageData) => {
   formData.append('prompt', imageData.prompt); 
 
   try {
-    const response = await axios.post(`${apiUrl}/edit-image/`, formData, {
+    const response = await axios.post(`${apiUrl}'https://imaginate-vision-ai-production.up.railway.app/edit-image/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
