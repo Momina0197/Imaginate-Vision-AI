@@ -134,14 +134,25 @@
 
 
 
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import os
+import base64
+import requests
+from dotenv import load_dotenv
+from PIL import Image
+from io import BytesIO
+import tempfile
 import uvicorn
+import traceback
 
-app = FastAPI()
+# Load environment variables first
+load_dotenv()
 
-# CORS
+app = FastAPI(title="Imaginate Vision AI")
+
+# CORS - Allow all origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -150,19 +161,75 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Health check endpoints
 @app.get("/")
 async def root():
-    return {"message": "Hello World", "status": "healthy"}
+    return {
+        "status": "healthy", 
+        "message": "Imaginate Vision AI Backend is running",
+        "service": "FastAPI"
+    }
 
 @app.get("/health")
 async def health():
-    return {"status": "ok"}
+    return {"status": "ok", "service": "Imaginate Vision AI"}
 
-@app.post("/test")
+@app.get("/test")
 async def test():
-    return {"message": "Test successful"}
+    return {"message": "Test successful - API is working"}
+
+# Simple file test endpoint
+@app.post("/simple-upload")
+async def simple_upload(
+    image: UploadFile = File(...),
+    prompt: str = Form(...)
+):
+    try:
+        return {
+            "message": "File received successfully",
+            "filename": image.filename,
+            "prompt": prompt,
+            "content_type": image.content_type
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+# Your main endpoint (simplified for now)
+@app.post("/edit-image/")
+async def edit_image(
+    image: UploadFile = File(...),
+    prompt: str = Form(...),
+    dimension: str = Form("landscape")
+):
+    try:
+        # Validate inputs
+        if not prompt.strip():
+            raise HTTPException(status_code=400, detail="Prompt is required")
+        
+        # Read the image file
+        image_data = await image.read()
+        
+        return {
+            "message": "Image processing started",
+            "prompt": prompt,
+            "dimension": dimension,
+            "file_size": len(image_data),
+            "status": "success"
+        }
+        
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"Processing error: {str(e)}"}
+        )
 
 # Railway startup
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    print(f"🚀 Starting server on port {port}")
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=port,
+        access_log=True
+    )
