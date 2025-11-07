@@ -38,6 +38,8 @@ const ImageGenerator = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      console.log("API URL:", apiUrl);
+      console.log("API:", process.env.REACT_APP_API_URL);
 
       if (response.data.image_url) {
         setGeneratedImage(response.data.image_url);
